@@ -4,7 +4,7 @@
  * You need to replace YOUR_API_KEY in the string associated with KEY with your actual API key
  */
 export const BASE_URL = 'https://api.harvardartmuseums.org';
-export const KEY = 'apikey=YOUR_API_KEY';
+export const KEY = 'apikey=04823d0f-db7e-43fb-89cd-bde864f2ce93';
 
 /**
  * This will make a call to the API for a single term and value (e.g. "person", and "unknown"), and return the result
@@ -75,7 +75,7 @@ export async function fetchAllCenturies() {
     localStorage.setItem('centuries', JSON.stringify(records));
 
     return records;
-  } catch (error) {
+  } catch (error) { 
     throw error;
   }
 }
