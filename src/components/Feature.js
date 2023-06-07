@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 
 // Don't touch this import
 import { fetchQueryResultsFromTermAndValue } from '../api';
-
+ 
 /**
  * We need a new component called Searchable which:
  * 
@@ -29,8 +29,22 @@ import { fetchQueryResultsFromTermAndValue } from '../api';
  * finally:
  *  - call setIsLoading, set it to false
  */
-const Searchable = (props) => {
-  
+const Searchable = (searchTerm, searchValue, setIsLoading, setSearchResults) => {
+    <span className="content">
+        <Searchable />
+        <a href="#" onClick={async (event) => {
+            event.preventDefault();
+            setIsLoading(true);
+
+            try {
+                const result = await fetchQueryResultsFromTermAndValue(searchTerm, searchValue);
+                setSearchResults(result);
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setIsLoading(false);
+            }}}>SOME SEARCH TERM</a>
+    </span>
 }
 
 /**
@@ -67,8 +81,28 @@ const Searchable = (props) => {
  * 
  * This component should be exported as default.
  */
-const Feature = (props) => {
-
+const Feature = ({ featuredResult }) => {
+    if (!featuredResult) {
+        return (
+            <main id="feature">
+                <div className="object-feature">
+                    <header>
+                        <h3>OBJECT TITLE</h3>
+                        <h4>WHEN IT IS DATED</h4>
+                    </header>
+                    <section className="facts">
+                        <span className="title">FACT NAME</span>
+                        <span className="content">FACT VALUE</span>
+                        <span className="title">NEXT FACT NAME</span>
+                        <span className="content">NEXT FACT VALUE</span>
+                    </section>
+                    <section className="photos">
+                        <img src=IMAGE_URL alt=SOMETHING_WORTHWHILE />
+                    </section>
+                </div>
+            </main>
+        )
+    }
 }
 
 export default Feature;
